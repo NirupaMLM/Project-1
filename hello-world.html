@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <title>Hello, World! — A Little Moment of Wonder</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f5f3ff;
+      --muted: #b8bdd3;
+      --violet: #a78bfa;
+      --cyan: #67e8f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(ellipse at 18% 22%, #312e8170 0, transparent 34%),
+        radial-gradient(ellipse at 82% 78%, #155e7560 0, transparent 36%),
+        #090d19;
+    }
+    .stars, .stars::before, .stars::after {
+      position: fixed; inset: 0; pointer-events: none; content: "";
+      background-image: radial-gradient(1px 1px at 15% 25%, #ffffffb0 99%, transparent),
+        radial-gradient(1px 1px at 78% 18%, #ffffff80 99%, transparent),
+        radial-gradient(2px 2px at 66% 70%, #c4b5fd90 99%, transparent),
+        radial-gradient(1px 1px at 30% 82%, #ffffff80 99%, transparent),
+        radial-gradient(1px 1px at 91% 48%, #67e8f980 99%, transparent);
+      animation: twinkle 7s ease-in-out infinite alternate;
+    }
+    .stars::before { transform: translate(12px, 8px) scale(1.3); opacity: .45; animation-delay: -3s; }
+    .stars::after { transform: translate(-8px, -6px) scale(.8); opacity: .55; animation-delay: -5s; }
+    main {
+      position: relative;
+      width: min(680px, calc(100% - 36px));
+      padding: clamp(38px, 8vw, 76px) clamp(26px, 7vw, 68px);
+      text-align: center;
+      border: 1px solid #ffffff20;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #ffffff11, #ffffff05);
+      box-shadow: 0 30px 100px #0008, inset 0 1px #ffffff18;
+      backdrop-filter: blur(18px);
+      animation: arrive .9s cubic-bezier(.2,.8,.2,1) both;
+    }
+    .orb {
+      width: 78px; height: 78px; margin: 0 auto 28px; border-radius: 50%;
+      display: grid; place-items: center; font-size: 34px;
+      background: radial-gradient(circle at 30% 25%, #fff 0, #c4b5fd 18%, #7c3aed 56%, #312e81 100%);
+      box-shadow: 0 0 35px #8b5cf680, 0 0 90px #22d3ee30;
+      animation: float 4s ease-in-out infinite;
+    }
+    .eyebrow { margin: 0 0 14px; color: var(--cyan); font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+    h1 {
+      margin: 0;
+      font-size: clamp(3rem, 9vw, 5.8rem);
+      line-height: .98;
+      letter-spacing: -.075em;
+      background: linear-gradient(110deg, #fff 18%, #ddd6fe 52%, #67e8f9 94%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .message { max-width: 420px; margin: 24px auto 32px; color: var(--muted); font-size: clamp(1rem, 2.6vw, 1.14rem); line-height: 1.75; }
+    button {
+      appearance: none; border: 1px solid #ffffff35; border-radius: 999px; padding: 13px 22px;
+      color: white; font: inherit; font-size: .92rem; font-weight: 650; cursor: pointer;
+      background: linear-gradient(100deg, #7c3aed, #4f46e5 55%, #0891b2);
+      box-shadow: 0 8px 28px #4f46e550, inset 0 1px #ffffff45;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    button:hover { transform: translateY(-3px); box-shadow: 0 13px 34px #4f46e580, inset 0 1px #ffffff55; }
+    button:active { transform: translateY(0) scale(.98); }
+    button:focus-visible { outline: 3px solid var(--cyan); outline-offset: 4px; }
+    .signature { margin: 38px 0 0; color: #8d94ae; font-size: .76rem; letter-spacing: .04em; }
+    .signature span { color: #c4b5fd; }
+    @keyframes arrive { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: none; } }
+    @keyframes float { 50% { transform: translateY(-7px); } }
+    @keyframes twinkle { to { opacity: .45; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <main>
+    <div class="orb" aria-hidden="true">✦</div>
+    <p class="eyebrow">A little moment of wonder</p>
+    <h1>Hello,<br>World!</h1>
+    <p class="message" id="message">Every great adventure starts with a simple hello. Here’s to the bright ideas and new beginnings ahead.</p>
+    <button type="button" id="helloButton">Say hello again <span aria-hidden="true">↗</span></button>
+    <p class="signature">Made with <span>✦</span> and a little imagination</p>
+  </main>
+  <script>
+    const messages = [
+      'Every great adventure starts with a simple hello. Here’s to the bright ideas and new beginnings ahead.',
+      'A tiny greeting can open up a whole universe of possibilities.',
+      'You showed up. That’s where the magic begins.'
+    ];
+    let current = 0;
+    document.getElementById('helloButton').addEventListener('click', () => {
+      current = (current + 1) % messages.length;
+      document.getElementById('message').textContent = messages[current];
+    });
+  </script>
+</body>
+</html>
