@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <title>Contact — A Little Moment of Wonder</title>
+  <style>
+    :root { color-scheme:dark; --ink:#f5f3ff; --muted:#b8bdd3; --cyan:#67e8f9; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:100px 18px 32px; color:var(--ink); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:radial-gradient(ellipse at 18% 22%,#312e8170 0,transparent 34%),radial-gradient(ellipse at 82% 78%,#155e7560 0,transparent 36%),#090d19; }
+    .stars { position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(1px 1px at 15% 25%,#ffffffb0 99%,transparent),radial-gradient(1px 1px at 78% 18%,#ffffff80 99%,transparent),radial-gradient(2px 2px at 66% 70%,#c4b5fd90 99%,transparent),radial-gradient(1px 1px at 30% 82%,#ffffff80 99%,transparent),radial-gradient(1px 1px at 91% 48%,#67e8f980 99%,transparent);animation:twinkle 7s ease-in-out infinite alternate; }
+    nav { position:fixed;z-index:2;top:22px;left:50%;transform:translateX(-50%);display:flex;gap:8px;padding:7px;border:1px solid #ffffff20;border-radius:999px;background:#101426cc;backdrop-filter:blur(12px); }
+    nav a { padding:9px 15px;border-radius:999px;color:var(--muted);text-decoration:none;font-size:.86rem;transition:color .2s,background .2s; }
+    nav a:hover,nav a[aria-current="page"] { color:white;background:#ffffff16; } nav a:focus-visible { outline:2px solid var(--cyan);outline-offset:2px; }
+    main { position:relative;width:min(680px,100%);padding:clamp(34px,7vw,64px);border:1px solid #ffffff20;border-radius:28px;background:linear-gradient(145deg,#ffffff11,#ffffff05);box-shadow:0 30px 100px #0008,inset 0 1px #ffffff18;backdrop-filter:blur(18px);animation:arrive .8s ease both; }
+    .orb { width:64px;height:64px;margin-bottom:26px;border-radius:50%;display:grid;place-items:center;font-size:28px;background:radial-gradient(circle at 30% 25%,#fff 0,#c4b5fd 18%,#7c3aed 56%,#312e81 100%);box-shadow:0 0 35px #8b5cf680,0 0 90px #22d3ee30; }
+    .eyebrow { margin:0 0 13px;color:var(--cyan);font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase; }
+    h1 { margin:0;font-size:clamp(3rem,8vw,5rem);line-height:1;letter-spacing:-.07em;background:linear-gradient(110deg,#fff 18%,#ddd6fe 52%,#67e8f9 94%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+    .lead { max-width:530px;margin:22px 0 30px;color:var(--muted);font-size:1.08rem;line-height:1.8; }
+    form { display:grid;gap:18px; }
+    .field { display:grid;gap:8px; }
+    label { color:#e6e3f5;font-size:.87rem;font-weight:600; }
+    input,textarea { width:100%;padding:13px 15px;border:1px solid #ffffff24;border-radius:13px;background:#080c19a8;color:var(--ink);font:inherit;transition:border-color .2s,box-shadow .2s; }
+    input::placeholder,textarea::placeholder { color:#7f879f; }
+    input:focus,textarea:focus { outline:none;border-color:#a78bfa;box-shadow:0 0 0 3px #8b5cf630; }
+    textarea { min-height:132px;resize:vertical; }
+    button { justify-self:start;border:1px solid #ffffff35;border-radius:999px;padding:13px 22px;color:white;font:inherit;font-size:.92rem;font-weight:650;cursor:pointer;background:linear-gradient(100deg,#7c3aed,#4f46e5 55%,#0891b2);box-shadow:0 8px 28px #4f46e550,inset 0 1px #ffffff45;transition:transform .2s,box-shadow .2s; }
+    button:hover { transform:translateY(-3px);box-shadow:0 13px 34px #4f46e580,inset 0 1px #ffffff55; } button:focus-visible { outline:3px solid var(--cyan);outline-offset:4px; }
+    .note { min-height:1.5em;margin:0;color:var(--cyan);font-size:.9rem; }
+    .signature { margin:28px 0 0;color:#8d94ae;font-size:.76rem;letter-spacing:.04em; } .signature span { color:#c4b5fd; }
+    @keyframes arrive { from {opacity:0;transform:translateY(18px) scale(.98)} to {opacity:1;transform:none} } @keyframes twinkle {to {opacity:.45}}
+    @media(max-width:520px) { nav {top:14px} nav a {padding:8px 12px} main {padding:30px 24px} }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after {animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important} }
+  </style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <nav aria-label="Main navigation"><a href="hello-world.html">Home</a><a href="about.html">About</a><a href="contact.html" aria-current="page">Contact</a></nav>
+  <main>
+    <div class="orb" aria-hidden="true">✉</div>
+    <p class="eyebrow">Say hello back</p>
+    <h1>Contact</h1>
+    <p class="lead">Have a thought, a question, or just want to say hi? Drop a note below and keep the good conversations going.</p>
+    <form id="contactForm">
+      <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" placeholder="Ada Lovelace" required></div>
+      <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="ada@example.com" required></div>
+      <div class="field"><label for="message">Your message</label><textarea id="message" name="message" placeholder="What's on your mind?" required></textarea></div>
+      <button type="submit">Send a note <span aria-hidden="true">↗</span></button>
+      <p class="note" id="formNote" role="status" aria-live="polite"></p>
+    </form>
+    <p class="signature">Made with <span>✦</span> and a little imagination</p>
+  </main>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', event => {
+      event.preventDefault();
+      document.getElementById('formNote').textContent = 'Thanks for reaching out! This demo form is ready to connect to an email service.';
+      event.currentTarget.reset();
+    });
+  </script>
+</body>
+</html>

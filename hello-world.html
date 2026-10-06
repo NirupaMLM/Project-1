@@ -12,6 +12,7 @@
       --muted: #b8bdd3;
       --violet: #a78bfa;
       --cyan: #67e8f9;
+      --muted: #b8bdd3;
     }
     * { box-sizing: border-box; }
     body {
@@ -79,6 +80,11 @@
     button:focus-visible { outline: 3px solid var(--cyan); outline-offset: 4px; }
     .signature { margin: 38px 0 0; color: #8d94ae; font-size: .76rem; letter-spacing: .04em; }
     .signature span { color: #c4b5fd; }
+    nav { position: fixed; z-index: 2; top: 22px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; padding: 7px; border: 1px solid #ffffff20; border-radius: 999px; background: #101426cc; backdrop-filter: blur(12px); }
+    nav a { padding: 9px 15px; border-radius: 999px; color: var(--muted); text-decoration: none; font-size: .86rem; transition: color .2s, background .2s; }
+    nav a:hover, nav a[aria-current="page"] { color: white; background: #ffffff16; }
+    nav a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+    @media (max-width: 520px) { nav { top: 14px; } nav a { padding: 8px 12px; } }
     @keyframes arrive { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: none; } }
     @keyframes float { 50% { transform: translateY(-7px); } }
     @keyframes twinkle { to { opacity: .45; } }
@@ -87,6 +93,11 @@
 </head>
 <body>
   <div class="stars" aria-hidden="true"></div>
+  <nav aria-label="Main navigation">
+    <a href="hello-world.html" aria-current="page">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
   <main>
     <div class="orb" aria-hidden="true">✦</div>
     <p class="eyebrow">A little moment of wonder</p>
